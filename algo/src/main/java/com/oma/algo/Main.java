@@ -1,13 +1,16 @@
 package com.oma.algo;
 
-/*
- * Hello, World!
- *
- */
+import java.util.ArrayList;
 
 public class Main {
-
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+      ArrayList<Order> orders = new ArrayList<>();
+      OrderGenerator og = new OrderGenerator();
+      orders = og.generateOrders();
+  
+      for (Order order: orders)
+        System.out.println(order.toString());
     }
+
 }
+
