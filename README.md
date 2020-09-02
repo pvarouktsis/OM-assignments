@@ -19,5 +19,6 @@ run the JAR
 ```
 java -jar target/algo-1.0-SNAPSHOT.jar
 ```
-
+\
+\
 \* Hoping that you already installed Java and Maven
