@@ -3,7 +3,6 @@ package com.oma.algo;
 import java.util.ArrayList;
 
 public class AssemblyLine {
-
     private final int MACHINES = 5;
     private final int SEED = 19092000;
     private final int MAX_ORDERS = 100;
@@ -15,7 +14,6 @@ public class AssemblyLine {
 
         orders = og.generateOrders();
         transitionTimes = og.generateTransitionTimesOfOrders();
-
     }
 
     public Solution createInitialSolution() {
@@ -31,3 +29,4 @@ public class AssemblyLine {
         return 0.0;
     }
 }
+

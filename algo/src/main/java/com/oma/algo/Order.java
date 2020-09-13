@@ -14,6 +14,5 @@ public class Order {
   public String toString() {
     return "(" + this.id + ", " + this.quantity + ", " + this.dark + ")";
   }
-
 }
 

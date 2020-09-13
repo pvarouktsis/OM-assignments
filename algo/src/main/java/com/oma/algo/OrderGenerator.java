@@ -46,6 +46,5 @@ public class OrderGenerator {
 
     return transitionTimes;
   }
-
 }
 
