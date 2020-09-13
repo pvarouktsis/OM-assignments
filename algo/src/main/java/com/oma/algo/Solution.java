@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Solution implements Iterable<List<Order>> {
     public HashSet<List<Order>> set;
- 
+
     public Solution() {
         this.set = new HashSet<List<Order>>();
     }

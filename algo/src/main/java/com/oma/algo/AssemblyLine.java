@@ -8,7 +8,7 @@ public class AssemblyLine {
     private final int MAX_ORDERS = 100;
     ArrayList<Order> orders;
     double[][] transitionTimes;
-    
+
     public AssemblyLine() {
         OrderGenerator og = new OrderGenerator(SEED, MAX_ORDERS);
 
@@ -26,6 +26,7 @@ public class AssemblyLine {
 
     // Calculate objective function
     public double calculateTime(Solution solution) {
+        // TODO
         return 0.0;
     }
 }
