@@ -20,7 +20,7 @@ public class Order {
     }
 
     public double getQuantity() {
-        return this.id;
+        return this.quantity;
     }
 
     public void setQuantity(double quantity) {
