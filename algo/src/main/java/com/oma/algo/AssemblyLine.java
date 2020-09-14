@@ -8,12 +8,14 @@ public class AssemblyLine {
     private final int MAX_ORDERS = 100;
     ArrayList<Order> orders;
     double[][] transitionTimes;
+    double[][] totalTimes;
 
     public AssemblyLine() {
         OrderGenerator og = new OrderGenerator(SEED, MAX_ORDERS);
 
         orders = og.generateOrders();
         transitionTimes = og.generateTransitionTimesOfOrders();
+        totalTimes = og.calculateTotalTimesOfOrders(orders, transitionTimes);
     }
 
     public Solution createInitialSolution() {

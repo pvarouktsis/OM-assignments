@@ -11,7 +11,7 @@ public class Main {
         sln = algo2.compute(sln);
         Algorithm algo3 = new VNDAlgorithm();
         sln = algo3.compute(sln);
-        //printSolution(sln);
+        printSolution(sln);
     }
 
     public static void printSolution(Solution sln) {

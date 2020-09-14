@@ -46,5 +46,28 @@ public class OrderGenerator {
 
         return transitionTimes;
     }
+
+    public double[][] calculateTotalTimesOfOrders(ArrayList<Order> orders,
+            double[][] transitionTimes) {
+        // totalTimes is a 2D array which contains the transition time of
+        // order i to order j, plus the additional 15 minutes of cleaning
+        // the machine (if order i is a dark color and j is a light color),
+        // plus the production time of order i
+        double[][] totalTimes = new double[maxOrders][maxOrders];
+
+        for (int i = 0; i < maxOrders; i++) {
+            // calculate production time of the ith order in minutes
+            double productionTime = orders.get(i).getQuantity() / 10; // (quantity * 6) / 60
+            for (int j = 0; j < maxOrders; j++) {
+                totalTimes[i][j] = transitionTimes[i][j];
+                totalTimes[i][j] += productionTime;
+                if (orders.get(i).getDark() && !orders.get(j).getDark()) { // dark && light
+                    totalTimes[i][j] += 15;
+                }
+            }
+        }
+
+        return totalTimes;
+    }
 }
 
