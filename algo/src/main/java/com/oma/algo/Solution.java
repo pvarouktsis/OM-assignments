@@ -9,10 +9,10 @@ import java.util.List;
  * Represents a set that contains many arrays/lists of elements
  */
 public class Solution implements Iterable<List<Order>> {
-    public HashSet<List<Order>> set;
+    public List<List<Order>> set;
 
     public Solution() {
-        this.set = new HashSet<List<Order>>();
+        this.set = new ArrayList<List<Order>>();
     }
 
     @Override
