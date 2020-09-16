@@ -20,6 +20,7 @@ public class AssemblyLine {
         totalTimes = og.calculateTotalTimesOfOrders(orders, transitionTimes);
     }
 
+    // Create 5 machines
     public Solution createInitialSolution() {
         Solution s = new Solution();
         for (int i = 0; i < MACHINES; i++) {
@@ -29,17 +30,14 @@ public class AssemblyLine {
     }
 
     // Calculate objective function
-    public double calculateTime(Solution solution) {
+    public double calculateTime(Solution sol) {
         double maxTime = 0.0;
-        Iterator<List<Order>> iterator = solution.iterator();
+        Iterator<List<Order>> iterator = sol.iterator();
 
+        // process
         while (iterator.hasNext()) {
             List<Order> machine = iterator.next();
-            double machineTime = 0.0;
-            // if machine does NOT contain orders, continue
-            if (machine.size() == 0)
-                continue;
-            machineTime = calculateTimeOfMachine(machine);
+            double machineTime = calculateTimeOfMachine(machine);
             if (maxTime < machineTime)
                 maxTime = machineTime;
         }
@@ -51,6 +49,11 @@ public class AssemblyLine {
     public double calculateTimeOfMachine(List<Order> machine) {
         double machineTime = 0.0;
 
+        // if machine does NOT contain orders, return 0.0
+        if (machine.isEmpty())
+            return machineTime;
+
+        // process
         for (int c = 0; c < machine.size() - 1; c++) {
             int i = machine.get(c).getId() - 1;
             int j = machine.get(c + 1).getId() - 1;
@@ -63,4 +66,3 @@ public class AssemblyLine {
         return machineTime;
     }
 }
-
