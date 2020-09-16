@@ -35,23 +35,32 @@ public class AssemblyLine {
 
         while (iterator.hasNext()) {
             List<Order> machine = iterator.next();
-            double tempSum = 0.0;
+            double machineTime = 0.0;
             // if machine does NOT contain orders, continue
             if (machine.size() == 0)
                 continue;
-            for (int c = 0; c < machine.size() - 1; c++) {
-                int i = machine.get(c).getId() - 1;
-                int j = machine.get(c + 1).getId() - 1;
-                tempSum += totalTimes[i][j];
-            }
-            // add the production time of the last order
-            int lo = machine.get(machine.size() - 1).getId() - 1;
-            tempSum += totalTimes[lo][lo];
-            if (maxTime < tempSum)
-                maxTime = tempSum;
+            machineTime = calculateTimeOfMachine(machine);
+            if (maxTime < machineTime)
+                maxTime = machineTime;
         }
 
         return maxTime;
+    }
+
+    // Calculate the time of a machine
+    public double calculateTimeOfMachine(List<Order> machine) {
+        double machineTime = 0.0;
+
+        for (int c = 0; c < machine.size() - 1; c++) {
+            int i = machine.get(c).getId() - 1;
+            int j = machine.get(c + 1).getId() - 1;
+            machineTime += totalTimes[i][j];
+        }
+        // add the production time of the last order
+        int lo = machine.get(machine.size() - 1).getId() - 1;
+        machineTime += totalTimes[lo][lo];
+
+        return machineTime;
     }
 }
 
