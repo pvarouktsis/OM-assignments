@@ -1,7 +1,6 @@
 package com.oma.algo;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,5 +23,9 @@ public class Solution implements Iterable<List<Order>> {
     public void addArray() {
         set.add(new ArrayList<Order>());
     }
-}
 
+    // Return if solution is empty
+    public boolean isEmpty() {
+        return set.isEmpty();
+    }
+}
