@@ -9,7 +9,7 @@ public class Main {
         sln = algo1.compute(sln);
         Algorithm algo2 = new SteepestDescentAlgorithm();
         sln = algo2.compute(sln);
-        Algorithm algo3 = new VNDAlgorithm();
+        Algorithm algo3 = new VNDAlgorithm(colorFactory);
         sln = algo3.compute(sln);
         printSolution(sln);
     }
