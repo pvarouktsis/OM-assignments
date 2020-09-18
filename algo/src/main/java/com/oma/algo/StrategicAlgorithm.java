@@ -7,14 +7,14 @@ import java.util.Iterator;
 public class StrategicAlgorithm implements Algorithm {
     private static final double INF = Double.POSITIVE_INFINITY;
     private AssemblyLine colorFactory;
-    private List<Order> orders;
     private List<Order> inSolution;
+    private List<Order> orders;
     private double[][] totalTimes;
 
-    public StrategicAlgorithm() {
-        this.colorFactory = new AssemblyLine();
-        this.orders = colorFactory.orders;
+    public StrategicAlgorithm(AssemblyLine colorFactory) {
+        this.colorFactory = colorFactory;
         this.inSolution = new ArrayList<Order>();
+        this.orders = colorFactory.orders;
         this.totalTimes = colorFactory.totalTimes;
     }
 
@@ -79,7 +79,7 @@ public class StrategicAlgorithm implements Algorithm {
         int minPos = -1;
 
         for (int c = 0; c < orders.size(); c++) {
-            if (inSolution.contains(orders.get(c)) || row == c)
+            if (inSolution.contains(orders.get(c)))
                 continue;
             if (minTime > totalTimes[row][c]) {
                 minTime = totalTimes[row][c];

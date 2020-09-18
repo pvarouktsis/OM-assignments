@@ -70,4 +70,3 @@ public class OrderGenerator {
         return totalTimes;
     }
 }
-
