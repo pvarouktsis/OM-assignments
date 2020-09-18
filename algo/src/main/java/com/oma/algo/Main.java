@@ -10,9 +10,8 @@ public class Main {
         Solution sln = colorFactory.createInitialSolution();
         Algorithm algo1 = new StrategicAlgorithm(colorFactory);
         sln = algo1.compute(sln);
-        /*
-        Algorithm algo2 = new SteepestDescentAlgorithm();
-        sln = algo2.compute(sln); */
+        Algorithm algo2 = new SteepestDescentAlgorithm(colorFactory);
+        sln = algo2.compute(sln);
         Algorithm algo3 = new VNDAlgorithm(colorFactory);
         sln = algo3.compute(sln);
         printSolution(sln);
