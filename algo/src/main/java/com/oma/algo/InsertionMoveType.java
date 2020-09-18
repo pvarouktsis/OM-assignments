@@ -16,7 +16,10 @@ public class InsertionMoveType implements MoveType {
             double machineBestTime = assemblyLine.calculateTimeOfMachine(machine);
             for (int i = 0; i < machine.size() - 1; i++) {
                 Order chosenOrder = machine.remove(i);
-                for (int j = i + 1; j < machine.size(); j++) {
+                for (int j = 0; j < machine.size(); j++) {
+                    if (i == j) {
+                        continue; // Don't put it in the same position it was before
+                    }
                     machine.add(j, chosenOrder);
                     double swappedTime = assemblyLine.calculateTimeOfMachine(machine);
                     if (swappedTime < machineBestTime) {
