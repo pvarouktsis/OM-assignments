@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class OrderGenerator {
-    private int seed;
+    private Random rg;
     private int maxOrders;
-    private Random rg = new Random(seed);
 
     public OrderGenerator(int seed, int maxOrders) {
-        this.seed = seed;
+        this.rg = new Random(seed);
         this.maxOrders = maxOrders;
     }
 
