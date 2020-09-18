@@ -2,11 +2,11 @@ package com.oma.algo;
 
 import java.util.List;
 
-public class SwapMoveType implements MoveType {
+public class InsertionMoveType implements MoveType {
 
     private final AssemblyLine assemblyLine;
 
-    public SwapMoveType(AssemblyLine as) {
+    public InsertionMoveType(AssemblyLine as) {
         this.assemblyLine = as;
     }
 
@@ -15,23 +15,19 @@ public class SwapMoveType implements MoveType {
         for (List<Order> machine : sol) {
             double machineBestTime = assemblyLine.calculateTimeOfMachine(machine);
             for (int i = 0; i < machine.size() - 1; i++) {
+                Order chosenOrder = machine.remove(i);
                 for (int j = i + 1; j < machine.size(); j++) {
-                    swapElements(machine, i, j);
+                    machine.add(j, chosenOrder);
                     double swappedTime = assemblyLine.calculateTimeOfMachine(machine);
                     if (swappedTime < machineBestTime) {
                         return true; // Found improvement, we are done
                     }
-                    swapElements(machine, i, j); // Reset the solution to previous state
+                    machine.remove(j); // Reset the solution to previous state
                 }
+                machine.add(i, chosenOrder);
             }
         }
         return false;
     }
 
-    private void swapElements(List<Order> machine,int idx1,int idx2) {
-        Order temp = machine.get(idx1);
-        machine.set(idx1, machine.get(idx2));
-        machine.set(idx2, temp);
-    }
-    
 }

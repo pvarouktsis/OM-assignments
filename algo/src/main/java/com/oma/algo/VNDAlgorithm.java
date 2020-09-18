@@ -9,7 +9,7 @@ public class VNDAlgorithm implements Algorithm {
     }
 
     public Solution compute(Solution s) {
-        MoveType moveTypes[] = {new SwapMoveType()};
+        MoveType moveTypes[] = {new SwapMoveType(assemblyLine), new InsertionMoveType(assemblyLine)};
         int i = 0;
         while (i < moveTypes.length) {
             MoveType current = moveTypes[i];
