@@ -24,8 +24,8 @@ public class Main {
         Algorithm algo3 = new VNDAlgorithm(colorFactory);
         slnCopy = algo3.compute(slnCopy); // Use copied solution from before
         System.out.println("\nVND algorithm solution:");
-        printSolution(sln);
-        System.out.println("\nObjective function: " + colorFactory.calculateTime(sln));
+        printSolution(slnCopy);
+        System.out.println("\nObjective function: " + colorFactory.calculateTime(slnCopy));
     }
 
     public static void printSolution(Solution sol) {
