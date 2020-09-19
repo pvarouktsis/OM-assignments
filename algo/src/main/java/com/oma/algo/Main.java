@@ -10,10 +10,20 @@ public class Main {
         Solution sln = colorFactory.createInitialSolution();
         Algorithm algo1 = new StrategicAlgorithm(colorFactory);
         sln = algo1.compute(sln);
+        System.out.println("\nStrategic algorithm solution:");
+        printSolution(sln);
+        System.out.println("\nObjective function: " + colorFactory.calculateTime(sln));
+
+        Solution slnCopy = new Solution(sln); // Copy of Strategic Algorithm result
         Algorithm algo2 = new SteepestDescentAlgorithm(colorFactory);
         sln = algo2.compute(sln);
+        System.out.println("\nSteepest decent algorithm solution:");
+        printSolution(sln);
+        System.out.println("\nObjective function: " + colorFactory.calculateTime(sln));
+
         Algorithm algo3 = new VNDAlgorithm(colorFactory);
-        sln = algo3.compute(sln);
+        slnCopy = algo3.compute(slnCopy); // Use copied solution from before
+        System.out.println("\nVND algorithm solution:");
         printSolution(sln);
         System.out.println("\nObjective function: " + colorFactory.calculateTime(sln));
     }

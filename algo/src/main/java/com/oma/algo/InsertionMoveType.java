@@ -12,22 +12,24 @@ public class InsertionMoveType implements MoveType {
 
     @Override
     public boolean improveSolution(Solution sol) {
-        for (List<Order> machine : sol) {
-            double machineBestTime = assemblyLine.calculateTimeOfMachine(machine);
-            for (int i = 0; i < machine.size() - 1; i++) {
-                Order chosenOrder = machine.remove(i);
-                for (int j = 0; j < machine.size(); j++) {
-                    if (i == j) {
-                        continue; // Don't put it in the same position it was before
+        double bestTime = assemblyLine.calculateTime(sol);
+        for (List<Order> currentMachine : sol) {
+            for (int i = 0; i < currentMachine.size(); i++) {
+                Order chosenOrder = currentMachine.remove(i);
+                for (List<Order> targetMachine : sol) {
+                    for (int j = 0; j < targetMachine.size(); j++) {
+                        if (targetMachine == currentMachine && i == j) {
+                            continue; // Don't put it in the same position it was before
+                        }
+                        targetMachine.add(j, chosenOrder);
+                        double swappedTime = assemblyLine.calculateTime(sol);
+                        if (swappedTime < bestTime) {
+                            return true; // Found improvement, we are done
+                        }
+                        targetMachine.remove(j); // Reset the solution to previous state
                     }
-                    machine.add(j, chosenOrder);
-                    double swappedTime = assemblyLine.calculateTimeOfMachine(machine);
-                    if (swappedTime < machineBestTime) {
-                        return true; // Found improvement, we are done
-                    }
-                    machine.remove(j); // Reset the solution to previous state
                 }
-                machine.add(i, chosenOrder);
+                currentMachine.add(i, chosenOrder);
             }
         }
         return false;

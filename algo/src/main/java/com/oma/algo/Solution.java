@@ -14,6 +14,17 @@ public class Solution implements Iterable<List<Order>> {
         this.set = new ArrayList<List<Order>>();
     }
 
+    public Solution(Solution other) {
+        this();
+        for (List<Order> list : other) {
+            ArrayList<Order> newList = new ArrayList<Order>(list.size());
+            for (Order order : list) {
+                newList.add(order);
+            }
+            this.set.add(newList);
+        }
+    }
+
     @Override
     public Iterator<List<Order>> iterator() {
         return set.iterator();
