@@ -34,9 +34,4 @@ public class Solution implements Iterable<List<Order>> {
     public void addArray() {
         set.add(new ArrayList<Order>());
     }
-
-    // Return if solution is empty
-    public boolean isEmpty() {
-        return set.isEmpty();
-    }
 }

@@ -6,31 +6,20 @@ import java.util.Iterator;
 
 public class StrategicAlgorithm implements Algorithm {
     private static final double INF = Double.POSITIVE_INFINITY;
-    private AssemblyLine colorFactory;
+    private AssemblyLine assemblyLine;
     private List<Order> inSolution;
-    private List<Order> orders;
-    private double[][] totalTimes;
 
-    public StrategicAlgorithm(AssemblyLine colorFactory) {
-        this.colorFactory = colorFactory;
+    public StrategicAlgorithm(AssemblyLine assemblyLine) {
+        this.assemblyLine = assemblyLine;
         this.inSolution = new ArrayList<Order>();
-        this.orders = colorFactory.orders;
-        this.totalTimes = colorFactory.totalTimes;
     }
 
     public Solution compute(Solution sol) {
-
-        // if solution is an empty set, return
-        if (sol.isEmpty())
-            return sol;
-
-        // process
-        while (inSolution.size() != orders.size()) {
+        while (inSolution.size() != assemblyLine.orders.size()) {
             Iterator<List<Order>> it = sol.iterator();
             List<Order> bmachine = null;
             double btime = INF;
             int bpos = -1;
-
             while (it.hasNext()) {
                 List<Order> machine = it.next();
                 double time = INF;
@@ -41,8 +30,8 @@ public class StrategicAlgorithm implements Algorithm {
                     int lo = machine.get(machine.size() - 1).getId() - 1;
                     pos = findMinTotalTimeOfRow(lo);
                 }
-                machine.add(orders.get(pos));
-                time = colorFactory.calculateTime(sol);
+                machine.add(assemblyLine.orders.get(pos));
+                time = assemblyLine.calculateTime(sol);
                 machine.remove(machine.size() - 1);
                 if (btime > time) {
                     bpos = pos;
@@ -50,9 +39,8 @@ public class StrategicAlgorithm implements Algorithm {
                     bmachine = machine;
                 }
             }
-
-            inSolution.add(orders.get(bpos));
-            bmachine.add(orders.get(bpos));
+            inSolution.add(assemblyLine.orders.get(bpos));
+            bmachine.add(assemblyLine.orders.get(bpos));
         }
 
         return sol;
@@ -62,11 +50,11 @@ public class StrategicAlgorithm implements Algorithm {
         double minTime = INF;
         int minPos = -1;
 
-        for (int c = 0; c < orders.size(); c++) {
-            if (inSolution.contains(orders.get(c)))
+        for (int c = 0; c < assemblyLine.orders.size(); c++) {
+            if (inSolution.contains(assemblyLine.orders.get(c)))
                 continue;
-            if (minTime > totalTimes[c][c]) {
-                minTime = totalTimes[c][c];
+            if (minTime > assemblyLine.totalTimes[c][c]) {
+                minTime = assemblyLine.totalTimes[c][c];
                 minPos = c;
             }
         }
@@ -78,11 +66,11 @@ public class StrategicAlgorithm implements Algorithm {
         double minTime = INF;
         int minPos = -1;
 
-        for (int c = 0; c < orders.size(); c++) {
-            if (inSolution.contains(orders.get(c)))
+        for (int c = 0; c < assemblyLine.orders.size(); c++) {
+            if (inSolution.contains(assemblyLine.orders.get(c)))
                 continue;
-            if (minTime > totalTimes[row][c]) {
-                minTime = totalTimes[row][c];
+            if (minTime > assemblyLine.totalTimes[row][c]) {
+                minTime = assemblyLine.totalTimes[row][c];
                 minPos = c;
             }
         }
