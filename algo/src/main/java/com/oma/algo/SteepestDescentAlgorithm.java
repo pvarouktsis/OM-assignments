@@ -10,7 +10,11 @@ public class SteepestDescentAlgorithm implements Algorithm {
 
     public Solution compute(Solution s) {
         MoveType moveType = new SwapMoveType(assemblyLine);
-        while(moveType.improveSolution(s));
+        int counter = 0;
+        while(moveType.improveSolution(s)) {
+            counter++;
+        }
+        System.out.println("\n Swaps until minimum: " + counter);
         return s;
     }
 }

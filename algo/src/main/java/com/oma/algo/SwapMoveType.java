@@ -30,7 +30,7 @@ public class SwapMoveType implements MoveType {
                         swapElements(currentMachine, i, targetMachine, j);
                         double swappedTime = assemblyLine.calculateTime(sol);
                         if (swappedTime < bestTime) {
-                            bestTime = swappedTime; // Found improvement, we are done
+                            bestTime = swappedTime;
                             bestMachine1 = currentMachine;
                             bestMachine2 = targetMachine;
                             bestIdx1 = i;
