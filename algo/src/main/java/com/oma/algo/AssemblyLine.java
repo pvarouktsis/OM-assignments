@@ -65,4 +65,16 @@ public class AssemblyLine {
 
         return machineTime;
     }
+
+    public Solution createBasicSolution() {
+        Solution s = createInitialSolution();
+        int i = 0;
+        while (i < orders.size()) {
+            for (List<Order> machine : s) {
+                machine.add(orders.get(i));
+                i++;
+            }
+        }
+        return s;
+    }
 }

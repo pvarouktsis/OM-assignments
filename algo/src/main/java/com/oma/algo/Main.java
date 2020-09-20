@@ -7,6 +7,12 @@ public class Main {
 
     public static void main(String[] args) {
         AssemblyLine colorFactory = new AssemblyLine();
+
+        Solution s = colorFactory.createBasicSolution();
+        System.out.println("\nBasic solution:");
+        printSolution(s);
+        System.out.println("\nObjective function: " + colorFactory.calculateTime(s));
+
         Solution sln = colorFactory.createInitialSolution();
         Algorithm algo1 = new StrategicAlgorithm(colorFactory);
         sln = algo1.compute(sln);
