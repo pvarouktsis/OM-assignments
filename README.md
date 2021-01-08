@@ -15,12 +15,12 @@ If you already have, change to the project's directory (where the pom.xml is),
 cd OM-assignments/algo/
 ```
 
-build the project
+build the project,
 ```
 mvn package
 ```
 
-run the JAR
+and run the JAR.
 ```
 java -jar target/algo-1.0-SNAPSHOT.jar
 ```
